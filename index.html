@@ -8,7 +8,7 @@
     <meta name="viewport" content="initial-scale=1, user-scalable=no">
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     <div class="row page-header">
         <!-- only show this element when the isnt on mobile -->
         <h1 class="col-lg-12 hidden-xs">Surf Tracker
@@ -21,41 +21,65 @@
     </div>
     <div class="student-add-form col-lg-4 pull-right">
         <h4 class="page-header">Add Surf Session</h4>
+
+        <!-- location -->
+        <div class="input-group form-group">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
+                </span>
+                <input type="text" class="form-control" name="location" id="location" placeholder="Location">
+            </div>
+
+        <!-- surf -->
         <div class="input-group form-group">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-user"></span>
             </span>
-            <input type="text" class="form-control" name="studentName" id="studentName" placeholder="Surf (ft)">
+            <input type="text" class="form-control" name="size" id="size" placeholder="Surf (ft)">
         </div>
+
+        <!-- tide -->
         <div class="input-group form-group">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-list-alt"></span>
             </span>
-            <input type="text" class="form-control" name="course" id="course"
-                   placeholder="Wind Speed/Direction">
+            <input type="text" class="form-control" name="tide" id="tide"
+                   placeholder="Tide (Up/Down)">
         </div>
+
+        <!-- wind -->
         <div class="input-group form-group">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-education"></span>
             </span>
-            <input type="text" class="form-control" name="studentGrade" id="studentGrade"
+            <input type="text" class="form-control" name="wind" id="wind"
+                   placeholder="Wind Speed/Direction">
+        </div>
+
+        <!-- rating -->
+        <div class="input-group form-group">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-education"></span>
+            </span>
+            <input type="text" class="form-control" name="rating" id="rating"
                    placeholder="Session Rating">
         </div>
+
         <button type="button" class="btn btn-success" id="addButton">Add Session</button>
         <button type="button" class="btn btn-default" id="cancelButton">Cancel</button>
         <button type="button" class="btn btn-danger" id="fetchButton">Get My Surf Data</button>
 
     </div>
-    <div class="student-list-container">
+    <div class="surf-list-container">
         <table class="student-list col-lg-8 col-xs-12">
             <thead class="page-header">
             <tr>
+                <th>Location</th>
                 <th>Surf (ft)</th>
-                <th>Tide</th>
+                <th>Tide (Up/Down)</th>
                 <th>Wind Speed/Direction</th>
-        
                 <th>Session Rating</th>
-                <th>Operations</th>
+                <th>Remove</th>
             </tr>
             </thead>
             <tbody >
