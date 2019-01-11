@@ -1,6 +1,7 @@
 //this version of the surf tracker is going to be done in node, express, mongo, and mongoose
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 3001;
 
