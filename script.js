@@ -61,17 +61,17 @@ function handleAddClicked(){
  * handleCancelClicked - Event Handler when user clicks the cancel button, should clear out student form
  * @param: {undefined} none
  * @returns: {undefined} none
- * @calls: clearAddStudentFormInputs
+ * @calls: clearAddSession
  */
 function handleCancelClick(){
-    clearAddStudentFormInputs();
+    clearAddSession();
     console.log("hi");
 }
 /***************************************************************************************************
  * addStudent - creates a student objects based on input fields in the form and adds the object to global student array
  * @param {undefined} none
  * @return undefined
- * @calls clearAddStudentFormInputs, updateStudentList
+ * @calls clearAddSession, updateStudentList
  */
 function addStudent(){
     var student_object = {};
@@ -80,16 +80,19 @@ function addStudent(){
     student_object.grade = $('#studentGrade').val();
     surfer_array.push(student_object);
     updateStudentList(surfer_array);
-    clearAddStudentFormInputs();
+    clearAddSession();
 }
 /***************************************************************************************************
  * clearAddStudentForm - clears out the form values based on inputIds variable
  */
-function clearAddStudentFormInputs(){
-    $('#studentName').val("");
-    $('#course').val("");
-    $('#studentGrade').val("");
-
+function clearAddSession(){
+    $('#location').val("");
+    $('#size').val("");
+    $('#swell-direction').val("");
+    $('#swell-period').val("");
+    $('#tide').val("");
+    $('#wind').val("");
+    $('#rating').val("");
 }
 /***************************************************************************************************
  * renderStudentOnDom - take in a student object, create html elements from the values and then append the elements
