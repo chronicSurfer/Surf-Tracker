@@ -11,16 +11,16 @@ $(document).ready(initializeApp);
  * Define all global variables here.  
  */
 /***********************
- * student_array - global array to hold student objects
+ * surfer_array - global array to hold student objects
  * @type {Array}
- * example of student_array after input: 
- * student_array = [
+ * example of surfer_array after input: 
+ * surfer_array = [
  *  { name: 'Jake', course: 'Math', grade: 85 },
  *  { name: 'Jill', course: 'Comp Sci', grade: 85 }
  * ];
  */
 
-var student_array = [];
+var surfer_array = [];
 
 
 /***************************************************************************************************
@@ -54,7 +54,7 @@ function addClickHandlersToElements(){
  */
 function handleAddClicked(){
     addStudent();
-    renderStudentOnDom(student_array[student_array.length-1])
+    renderStudentOnDom(surfer_array[surfer_array.length-1])
 
 }
 /***************************************************************************************************
@@ -78,8 +78,8 @@ function addStudent(){
     student_object.name = $('#studentName').val();
     student_object.course = $('#course').val();
     student_object.grade = $('#studentGrade').val();
-    student_array.push(student_object);
-    updateStudentList(student_array);
+    surfer_array.push(student_object);
+    updateStudentList(surfer_array);
     clearAddStudentFormInputs();
 }
 /***************************************************************************************************
@@ -97,11 +97,11 @@ function clearAddStudentFormInputs(){
  * @param {object} studentObj a single student object with course, name, and grade inside
  */
 function renderStudentOnDom(currentStudentObject){
-    for (var i=0; i<student_array.length; i++) {
+    for (var i=0; i<surfer_array.length; i++) {
         var newStudentRow = $('<tr>');
-        var newName = $('<td>').text(student_array[i].name);
-        var newCourse = $('<td>').text(student_array[i].course);
-        var newGrade = $('<td>').text(student_array[i].grade);
+        var newName = $('<td>').text(surfer_array[i].name);
+        var newCourse = $('<td>').text(surfer_array[i].course);
+        var newGrade = $('<td>').text(surfer_array[i].grade);
         var deleteContainer = $('<td>');
         var  deleteButton = $('<button>', {
             class: "btn btn-danger btn-md",
@@ -123,10 +123,10 @@ function renderStudentOnDom(currentStudentObject){
  * @returns {undefined} none
  * @calls renderStudentOnDom, calculateGradeAverage, renderGradeAverage
  */
-function updateStudentList(student_array){
+function updateStudentList(surfer_array){
     $('tbody').empty();
-    for (var studentIndex = 0; studentIndex<student_array.length; studentIndex++) {
-        var currentStudentObject =  student_array[studentIndex];
+    for (var studentIndex = 0; studentIndex<surfer_array.length; studentIndex++) {
+        var currentStudentObject =  surfer_array[studentIndex];
         renderStudentOnDom(currentStudentObject);
     }
     calculateGradeAverage();
@@ -140,12 +140,12 @@ function updateStudentList(student_array){
  */
 function calculateGradeAverage(studentArray){
     var currentGrade = 0;
-    for (var gradeIndex = 0; gradeIndex<student_array.length; gradeIndex++) {
-        var totalGrade = parseFloat(student_array[gradeIndex].grade);
+    for (var gradeIndex = 0; gradeIndex<surfer_array.length; gradeIndex++) {
+        var totalGrade = parseFloat(surfer_array[gradeIndex].grade);
         currentGrade += totalGrade;
     }
 
-    var average = currentGrade/student_array.length;
+    var average = currentGrade/surfer_array.length;
     var fixedAvg = average.toFixed(2);
     renderGradeAverage(fixedAvg+'%');
     return fixedAvg;
@@ -177,6 +177,6 @@ function fetchData ()
 
     $.ajax(settings).done(function (response) {
         var parseData = JSON.parse(response);
-        student_array.push(parseData.data);
+        surfer_array.push(parseData.data);
     });
 }
