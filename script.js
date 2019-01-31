@@ -53,9 +53,8 @@ function addClickHandlersToElements(){
        none
  */
 function handleAddClicked(){
-    addStudent();
-    renderStudentOnDom(surfer_array[surfer_array.length-1])
-
+    addSession();
+    renderSessionOnDom(surfer_array[surfer_array.length-1]);
 }
 /***************************************************************************************************
  * handleCancelClicked - Event Handler when user clicks the cancel button, should clear out student form
@@ -68,14 +67,15 @@ function handleCancelClick(){
     console.log("hi");
 }
 /***************************************************************************************************
- * addStudent - creates a student objects based on input fields in the form and adds the object to global student array
+ * addSession - creates a student objects based on input fields in the form and adds the object to global student array
  * @param {undefined} none
  * @return undefined
  * @calls clearAddSession, updateStudentList
  */
-function addStudent(){
+function addSession(){
     var session_object = {};
     session_object.location = $('#location').val();
+    console.log('adding location');
     session_object.size = $('#size').val();
     session_object.direction = $('#swell-direction').val();
     session_object.period =$('#swell-period').val();
@@ -87,7 +87,7 @@ function addStudent(){
     clearAddSession();
 }
 /***************************************************************************************************
- * clearAddStudentForm - clears out the form values based on inputIds variable
+ * clearaddSessionForm - clears out the form values based on inputIds variable
  */
 function clearAddSession(){
     $('#location').val("");
@@ -100,11 +100,11 @@ function clearAddSession(){
     console.log("Cleared");
 }
 /***************************************************************************************************
- * renderStudentOnDom - take in a student object, create html elements from the values and then append the elements
+ * renderSessionOnDom - take in a student object, create html elements from the values and then append the elements
  * into the .student_list tbody
  * @param {object} studentObj a single student object with course, name, and grade inside
  */
-function renderStudentOnDom(currentStudentObject){
+function renderSessionOnDom(currentStudentObject){
     for (var i=0; i<surfer_array.length; i++) {
         var newStudentRow = $('<tr>');
         var newName = $('<td>').text(surfer_array[i].name);
@@ -129,24 +129,24 @@ function renderStudentOnDom(currentStudentObject){
  * updateStudentList - centralized function to update the average and call student list update
  * @param students {array} the array of student objects
  * @returns {undefined} none
- * @calls renderStudentOnDom, calculateGradeAverage, renderGradeAverage
+ * @calls renderSessionOnDom, calculateSessionAverage, renderSessionAverage
  */
 function updateStudentList(surfer_array){
     $('tbody').empty();
     for (var studentIndex = 0; studentIndex<surfer_array.length; studentIndex++) {
         var currentStudentObject =  surfer_array[studentIndex];
-        renderStudentOnDom(currentStudentObject);
+        renderSessionOnDom(currentStudentObject);
     }
-    calculateGradeAverage();
-    renderGradeAverage();
+    calculateSessionAverage();
+    renderSessionAverage();
 
 }
 /***************************************************************************************************
- * calculateGradeAverage - loop through the global student array and calculate average grade and return that value
+ * calculateSessionAverage - loop through the global student array and calculate average grade and return that value
  * @param: {array} students  the array of student objects
  * @returns {number}
  */
-function calculateGradeAverage(studentArray){
+function calculateSessionAverage(studentArray){
     var currentGrade = 0;
     for (var gradeIndex = 0; gradeIndex<surfer_array.length; gradeIndex++) {
         var totalGrade = parseFloat(surfer_array[gradeIndex].grade);
@@ -155,15 +155,15 @@ function calculateGradeAverage(studentArray){
 
     var average = currentGrade/surfer_array.length;
     var fixedAvg = average.toFixed(2);
-    renderGradeAverage(fixedAvg+'%');
+    renderSessionAverage(fixedAvg+'%');
     return fixedAvg;
 }
 /***************************************************************************************************
- * renderGradeAverage - updates the on-page grade average
+ * renderSessionAverage - updates the on-page grade average
  * @param: {number} average    the grade average
  * @returns {undefined} none
  */
-function renderGradeAverage(average){
+function renderSessionAverage(average){
     $(".avgGrade").text(average);
 }
 
