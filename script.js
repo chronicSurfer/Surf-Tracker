@@ -74,11 +74,15 @@ function handleCancelClick(){
  * @calls clearAddSession, updateStudentList
  */
 function addStudent(){
-    var student_object = {};
-    student_object.name = $('#studentName').val();
-    student_object.course = $('#course').val();
-    student_object.grade = $('#studentGrade').val();
-    surfer_array.push(student_object);
+    var session_object = {};
+    session_object.location = $('#location').val();
+    session_object.size = $('#size').val();
+    session_object.direction = $('#swell-direction').val();
+    session_object.period =$('#swell-period').val();
+    session_object.tide = $('#tide').val();
+    session_object.wind = $('#wind').val();
+    session_object.rating = $('#rating').val();
+    surfer_array.push(session_object);
     updateStudentList(surfer_array);
     clearAddSession();
 }
@@ -93,6 +97,7 @@ function clearAddSession(){
     $('#tide').val("");
     $('#wind').val("");
     $('#rating').val("");
+    console.log("Cleared");
 }
 /***************************************************************************************************
  * renderStudentOnDom - take in a student object, create html elements from the values and then append the elements
