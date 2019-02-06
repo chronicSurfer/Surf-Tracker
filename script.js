@@ -104,9 +104,9 @@ function clearAddSession(){
  * into the .student_list tbody
  * @param {object} studentObj a single student object with course, name, and grade inside
  */
-function renderSessionOnDom(currentStudentObject){
+function renderSessionOnDom(currentSessionObject){
     for (var i=0; i<surfer_array.length; i++) {
-        var newStudentRow = $('<tr>');
+        var newSessionRow = $('<tr>');
         var newName = $('<td>').text(surfer_array[i].name);
         var newCourse = $('<td>').text(surfer_array[i].course);
         var newGrade = $('<td>').text(surfer_array[i].grade);
@@ -117,8 +117,8 @@ function renderSessionOnDom(currentStudentObject){
         });
         deleteContainer.append(deleteButton);
     }
-    $(newStudentRow).append(newName, newCourse, newGrade, deleteContainer);
-    $('tbody').append(newStudentRow);
+    $(newSessionRow).append(newName, newCourse, newGrade, deleteContainer);
+    $('tbody').append(newSessionRow);
     $('.btn-danger').on('click', function(){
         $(this).closest("tr").remove();
     });
@@ -134,19 +134,19 @@ function renderSessionOnDom(currentStudentObject){
 function updateStudentList(surfer_array){
     $('tbody').empty();
     for (var studentIndex = 0; studentIndex<surfer_array.length; studentIndex++) {
-        var currentStudentObject =  surfer_array[studentIndex];
-        renderSessionOnDom(currentStudentObject);
+        var currentSessionObject =  surfer_array[studentIndex];
+        renderSessionOnDom(currentSessionObject);
     }
     calculateSessionAverage();
     renderSessionAverage();
 
 }
 /***************************************************************************************************
- * calculateSessionAverage - loop through the global student array and calculate average grade and return that value
+ * calculateSessionAverage - loop through the global surfer array and calculate average grade and return that value
  * @param: {array} students  the array of student objects
  * @returns {number}
  */
-function calculateSessionAverage(studentArray){
+function calculateSessionAverage(surfer_array){
     var currentGrade = 0;
     for (var gradeIndex = 0; gradeIndex<surfer_array.length; gradeIndex++) {
         var totalGrade = parseFloat(surfer_array[gradeIndex].grade);
@@ -160,11 +160,11 @@ function calculateSessionAverage(studentArray){
 }
 /***************************************************************************************************
  * renderSessionAverage - updates the on-page grade average
- * @param: {number} average    the grade average
+ * @param: {number} average    the session average
  * @returns {undefined} none
  */
 function renderSessionAverage(average){
-    $(".avgGrade").text(average);
+    $(".avgSession").text(average);
 }
 
 function fetchData ()
